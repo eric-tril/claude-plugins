@@ -160,7 +160,7 @@ Note: These checks run on the working tree. They may surface pre-existing issues
 **code-reviewer**:
 - Backend: FastAPI patterns, error bubbling, Pydantic v2, Python 3.12 compliance, ruff style
 - Frontend: TypeScript strict mode, Tailwind/design tokens, shadcn/ui, `@/` imports, component patterns
-- Bug detection and confidence scoring ≥80
+- Bug detection and confidence scoring >=80
 
 **code-simplifier**:
 - Backend: ruff formatting, Pydantic v2 patterns, async consistency

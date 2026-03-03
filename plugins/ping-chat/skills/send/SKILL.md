@@ -39,7 +39,7 @@ gh pr view --json url,title,headRefName,number,additions,deletions,author
 
 If no open PR exists for the current branch, stop and tell the user:
 
-> "No PR found. Please open a PR first or provide a PR link, then re-run /ping-chat."
+> "No PR found. Please open a PR first or provide a PR link, then re-run /ping-chat:send."
 
 Store: `PR_URL`, `PR_TITLE`, `PR_NUMBER`, `AUTHOR` (the `author.login` value), `HEAD_BRANCH`, `ADDITIONS`, `DELETIONS`.
 
