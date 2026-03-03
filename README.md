@@ -4,17 +4,42 @@ A Claude Code plugin marketplace for the **Klair project**. Includes code review
 
 ## Installation
 
-Add the marketplace to Claude Code:
+### Step 1: Add the marketplace
+
+From within Claude Code, run:
 
 ```
-/plugin marketplace add <github-owner>/claude-plugins
+/plugin marketplace add https://github.com/eric-tril/claude-plugins.git
 ```
 
-Then install plugins individually:
+This registers the marketplace so you can browse and install its plugins. No plugins are installed yet.
+
+### Step 2: Install plugins
+
+Install the plugins you want:
 
 ```
 /plugin install klair-staged-reviewer@eric-trilogy-plugins
 /plugin install ping-chat@eric-trilogy-plugins
+```
+
+Or browse available plugins interactively with `/plugin` and go to the **Discover** tab.
+
+### Team setup (optional)
+
+To auto-prompt teammates to install this marketplace when they clone a project, add this to the project's `.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "eric-trilogy-plugins": {
+      "source": {
+        "source": "url",
+        "url": "https://github.com/eric-tril/claude-plugins.git"
+      }
+    }
+  }
+}
 ```
 
 ## Plugins
