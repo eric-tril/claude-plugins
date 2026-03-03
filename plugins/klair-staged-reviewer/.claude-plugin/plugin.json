@@ -1,0 +1,8 @@
+{
+  "name": "klair-staged-reviewer",
+  "description": "Klair project code review for staged changes with interactive issue-by-issue fix workflow",
+  "author": {
+    "name": "Anthropic",
+    "email": "support@anthropic.com"
+  }
+}
