@@ -83,6 +83,7 @@ An example config is at [config-files/ping-chat.example.json](config-files/ping-
 | `bot_name` | Yes | Display name for the bot (e.g., "Sackboy", "Kratos") |
 | `bot_catchphrase` | No | Text after the bot name in the card header. Defaults to "requests a review!" |
 | `bot_avatar_url` | No | URL to an avatar image displayed in the card header |
+| `theme` | No | Card color theme: `ocean` (default), `forest`, `sunset`, `slate`, `violet` |
 
 ## Project Structure
 

@@ -1,7 +1,7 @@
 {
   "name": "klair-staged-reviewer",
   "description": "Klair project code review for staged changes with interactive issue-by-issue fix workflow",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "Eric"
   }

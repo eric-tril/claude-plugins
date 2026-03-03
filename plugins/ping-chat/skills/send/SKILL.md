@@ -16,16 +16,18 @@ cat ~/.claude/config/ping-chat.json
 ```
 
 Extract these values:
+
 - `gchat_webhook_url` (required) — the Google Chat webhook URL
 - `bot_name` (required) — character name (e.g., "Sackboy", "Kratos")
 - `bot_catchphrase` (optional) — defaults to "requests a review!"
 - `bot_avatar_url` (optional) — URL to the bot's avatar image (displayed in the card header)
+- `theme` (optional) — card color theme. Options: `ocean` (default), `forest`, `sunset`, `slate`, `violet`
 
 If the file doesn't exist or `gchat_webhook_url` or `bot_name` is missing, stop and tell the user:
 
 > "Missing config. Create `~/.claude/config/ping-chat.json` with at minimum `gchat_webhook_url` and `bot_name` keys."
 
-Store: `WEBHOOK_URL`, `BOT_NAME`, `BOT_CATCHPHRASE`, `BOT_AVATAR_URL`.
+Store: `WEBHOOK_URL`, `BOT_NAME`, `BOT_CATCHPHRASE`, `BOT_AVATAR_URL`, `THEME`.
 
 ## Step 1 — Gather PR Details
 
@@ -76,6 +78,17 @@ webhook_url = "WEBHOOK_URL_VALUE"
 bot_name = "BOT_NAME_VALUE"
 catchphrase = "BOT_CATCHPHRASE_VALUE"
 avatar_url = "BOT_AVATAR_URL_VALUE"
+theme_name = "THEME_VALUE"
+
+# Theme definitions — button color
+themes = {
+    "ocean":  {"red": 0.10, "green": 0.46, "blue": 0.82},
+    "forest": {"red": 0.18, "green": 0.60, "blue": 0.33},
+    "sunset": {"red": 0.90, "green": 0.49, "blue": 0.13},
+    "slate":  {"red": 0.35, "green": 0.40, "blue": 0.45},
+    "violet": {"red": 0.54, "green": 0.25, "blue": 0.87},
+}
+button_color = themes.get(theme_name, themes["ocean"])
 
 pr_url = "PR_URL_VALUE"
 pr_number = PR_NUMBER_VALUE
@@ -88,15 +101,15 @@ ai_summary = """AI_SUMMARY_VALUE"""
 # Build card header
 header = {
     "title": f"{bot_name} {catchphrase}",
-    "subtitle": f"PR #{pr_number} by {author}",
+    "subtitle": f"PR #{pr_number}",
     "imageType": "CIRCLE"
 }
 if avatar_url:
     header["imageUrl"] = avatar_url
 
 # Build card sections
-diff_stats = f"(+{additions} / \u2212{deletions})"
-link_html = f'<a href="{pr_url}">{pr_title}</a> {diff_stats}'
+diff_stats = f'<font color="#1a7f37">+{additions}</font> / <font color="#cf222e">\u2212{deletions}</font>'
+link_html = f'<a href="{pr_url}">{pr_title}</a>  {diff_stats}'
 
 sections = [
     {"widgets": [{"textParagraph": {"text": link_html}}]}
@@ -104,8 +117,7 @@ sections = [
 
 if ai_summary.strip():
     sections.append({
-        "header": "AI Summary",
-        "widgets": [{"textParagraph": {"text": ai_summary.strip()}}]
+        "widgets": [{"textParagraph": {"text": f"<b>Summary:</b> {ai_summary.strip()}"}}]
     })
 
 sections.append({
@@ -113,8 +125,9 @@ sections.append({
         "buttonList": {
             "buttons": [{
                 "text": "Review PR",
+                "icon": {"materialIcon": {"name": "rate_review"}},
                 "onClick": {"openLink": {"url": pr_url}},
-                "color": {"red": 0.82, "green": 0.16, "blue": 0.16, "alpha": 1}
+                "color": {**button_color, "alpha": 1}
             }]
         }
     }]
