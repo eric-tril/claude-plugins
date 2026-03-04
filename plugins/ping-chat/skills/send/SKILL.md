@@ -22,12 +22,13 @@ Extract these values:
 - `bot_catchphrase` (optional) — defaults to "requests a review!"
 - `bot_avatar_url` (optional) — URL to the bot's avatar image (displayed in the card header)
 - `theme` (optional) — card color theme. Options: `ocean` (default), `forest`, `sunset`, `slate`, `violet`
+- `gchat_user_id` (optional) — your Google Chat user ID (e.g., `users/123456789`). When set, you'll be @mentioned in the posted message so you get notified when someone replies to the thread. To find your user ID: open [Google Chat](https://chat.google.com) in a browser, open Developer Tools (F12 / Cmd+Option+I), go to the Console tab, and run `document.querySelector('[data-member-id]')?.getAttribute('data-member-id')`. The result will contain your numeric ID — use just the numeric portion with a `users/` prefix (e.g., `users/109869351304660926740`).
 
 If the file doesn't exist or `gchat_webhook_url` or `bot_name` is missing, stop and tell the user:
 
 > "Missing config. Create `~/.claude/config/ping-chat.json` with at minimum `gchat_webhook_url` and `bot_name` keys."
 
-Store: `WEBHOOK_URL`, `BOT_NAME`, `BOT_CATCHPHRASE`, `BOT_AVATAR_URL`, `THEME`.
+Store: `WEBHOOK_URL`, `BOT_NAME`, `BOT_CATCHPHRASE`, `BOT_AVATAR_URL`, `THEME`, `GCHAT_USER_ID`.
 
 ## Step 1 — Gather PR Details
 
@@ -79,6 +80,7 @@ bot_name = "BOT_NAME_VALUE"
 catchphrase = "BOT_CATCHPHRASE_VALUE"
 avatar_url = "BOT_AVATAR_URL_VALUE"
 theme_name = "THEME_VALUE"
+gchat_user_id = "GCHAT_USER_ID_VALUE"  # empty string if not configured
 
 # Theme definitions — button color
 themes = {
@@ -134,8 +136,12 @@ sections.append({
 })
 
 # Build full payload
+text_preview = f"PR #{pr_number} \u2014 {pr_title} (by {author})"
+if gchat_user_id:
+    text_preview += f" <{gchat_user_id}>"
+
 payload = {
-    "text": f"PR #{pr_number} \u2014 {pr_title} (by {author})",
+    "text": text_preview,
     "cardsV2": [{
         "cardId": "pr-review-card",
         "card": {"header": header, "sections": sections}
