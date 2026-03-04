@@ -13,7 +13,7 @@
       "name": "klair-staged-reviewer",
       "source": "./plugins/klair-staged-reviewer",
       "description": "Code review for staged changes with specialized agents and interactive fix workflow",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "code-review",
       "tags": ["review", "python", "typescript", "fastapi", "react"]
     },
@@ -21,7 +21,7 @@
       "name": "ping-chat",
       "source": "./plugins/ping-chat",
       "description": "Post PR review requests to Google Chat with rich cards",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "integrations",
       "tags": ["google-chat", "pr", "notifications"]
     }

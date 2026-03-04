@@ -1,7 +1,7 @@
 ---
 description: "Review staged changes and interactively fix issues"
 argument-hint: "[review-aspects]"
-allowed-tools: ["Bash", "Glob", "Grep", "Read", "Task", "Edit", "AskUserQuestion"]
+allowed-tools: ["Bash", "Glob", "Grep", "Read", "Agent", "Edit", "AskUserQuestion"]
 ---
 
 # Staged Code Review
@@ -36,7 +36,7 @@ This determines which rules agents apply AND which automated checks run after fi
 
 ### Step 4: Launch Review Agents
 
-Based on the scope, launch the appropriate agents using the Task tool. Pass each agent the staged diff context by explicitly telling them to run `git diff --cached` to get the changes they should review.
+Based on the scope, launch the appropriate agents using the Agent tool. Pass each agent the staged diff context by explicitly telling them to run `git diff --cached` to get the changes they should review.
 
 **When invoking each agent, include the file-type context:**
 - If only backend changes: "Review these staged Python/FastAPI changes. Apply backend (klair-api) rules only."
