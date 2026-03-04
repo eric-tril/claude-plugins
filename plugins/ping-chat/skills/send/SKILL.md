@@ -136,7 +136,7 @@ sections.append({
 })
 
 # Build full payload
-text_preview = f"PR #{pr_number} \u2014 {pr_title} (by {author})"
+text_preview = f"PR #{pr_number} \u2014 {pr_title}"
 if gchat_user_id:
     text_preview += f" <{gchat_user_id}>"
 
