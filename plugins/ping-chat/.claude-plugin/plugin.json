@@ -1,7 +1,7 @@
 {
   "name": "ping-chat",
   "description": "Post PR review requests to Google Chat with rich cards",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": {
     "name": "Eric"
   }

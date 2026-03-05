@@ -22,7 +22,7 @@ Extract these values:
 - `bot_catchphrase` (optional) — defaults to "requests a review!"
 - `bot_avatar_url` (optional) — URL to the bot's avatar image (displayed in the card header)
 - `theme` (optional) — card color theme. Options: `ocean` (default), `forest`, `sunset`, `slate`, `violet`
-- `gchat_user_id` (optional) — your Google Chat user identifier. When set, you'll be @mentioned in the posted message so you get notified when someone replies to the thread. Use your email address with a `users/` prefix (e.g., `users/eric@example.com`).
+- `gchat_user_id` (optional) — your Google Chat user ID (e.g., `users/123456789012345678`). When set, you'll be @mentioned in the posted message so you get notified when someone replies to the thread.
 
 If the file doesn't exist or `gchat_webhook_url` or `bot_name` is missing, stop and tell the user:
 

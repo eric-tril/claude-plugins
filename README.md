@@ -84,6 +84,17 @@ An example config is at [config-files/ping-chat.example.json](config-files/ping-
 | `bot_catchphrase` | No | Text after the bot name in the card header. Defaults to "requests a review!" |
 | `bot_avatar_url` | No | URL to an avatar image displayed in the card header |
 | `theme` | No | Card color theme: `ocean` (default), `forest`, `sunset`, `slate`, `violet` |
+| `gchat_user_id` | No | Your Google Chat user ID (e.g., `users/123456789012345678`). When set, you'll be @mentioned in the posted message so you get notified when someone replies to the thread. See [Finding your user ID](#finding-your-google-chat-user-id) below. |
+
+#### Finding your Google Chat user ID
+
+1. Go to the [OAuth2 Playground](https://developers.google.com/oauthplayground)
+2. Under **Select & Authorize APIs**, find **People API v1** and select `https://www.googleapis.com/auth/userinfo.profile`
+3. Click **Authorize APIs** and sign in with your Google account
+4. Click **Exchange authorization code for tokens**
+5. In the **Request URI** box, enter: `https://people.googleapis.com/v1/people/me?personFields=metadata`
+6. Click **Send the request**
+7. In the response, find `"resourceName": "people/NUMERIC_ID"` — use that numeric ID as `users/NUMERIC_ID` in your config
 
 ## Project Structure
 

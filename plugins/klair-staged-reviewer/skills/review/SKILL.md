@@ -10,6 +10,14 @@ Review staged changes using specialized agents, then walk through each issue int
 
 **Review Aspects (optional):** "$ARGUMENTS"
 
+## Critical Rules
+
+**These rules are absolute and must NEVER be violated:**
+
+1. **NEVER apply a fix without explicit user approval.** You MUST use `AskUserQuestion` for every single fix and receive a clear "Apply this fix" response before making any change. If the response is blank, empty, unclear, or anything other than explicit approval — treat it as "Skip this issue" and move on. Do NOT assume approval.
+
+2. **NEVER run `git add` or stage any files.** Do not run `git add`, `git stage`, or any command that stages files at any point during the review. Modified files must remain unstaged so the user controls what gets committed.
+
 ## Workflow:
 
 ### Step 1: Get Staged Changes
@@ -87,9 +95,11 @@ Then, for **each issue** starting with the most critical:
    - "Apply this fix" — Apply the suggested change
    - "Skip this issue" — Leave the code as-is and move on
 
-4. **If the user approves:** Apply the fix using the Edit tool. Do **NOT** run `git add` — leave the file unstaged so the user controls staging.
+   **IMPORTANT**: Only proceed with applying the fix if the user explicitly selects "Apply this fix". If the response is blank, empty, missing, or anything other than "Apply this fix", treat it as "Skip this issue".
 
-5. **If the user skips:** Note it was skipped and move to the next issue.
+4. **If the user explicitly selects "Apply this fix":** Apply the fix using the Edit tool. Do **NOT** run `git add` — the file must remain unstaged.
+
+5. **If the user skips OR the response is blank/unclear:** Note it was skipped and move to the next issue. Do NOT apply the fix.
 
 6. **Move to the next issue** and repeat until all issues are processed.
 
@@ -109,7 +119,7 @@ After all issues are processed, show a final summary:
 ## Clean Reviews
 - [agents that found no issues]
 
-Note: Fixed files have been modified but NOT re-staged.
+**REMINDER: Do NOT stage any files. Do NOT run `git add`.** Fixed files have been modified but NOT re-staged.
 Run `git diff` to review the applied changes.
 Run `git add -p` to selectively stage fixes.
 ```
@@ -135,6 +145,8 @@ Present results clearly:
 - List any lint/type errors found, noting which were likely introduced by fixes vs pre-existing
 
 Note: These checks run on the working tree. They may surface pre-existing issues unrelated to the review fixes.
+
+**Final reminder: Do NOT run `git add` or stage any files. The user will handle staging themselves.**
 
 ## Usage Examples:
 
