@@ -4,5 +4,5 @@
   "bot_catchphrase": "requests a review!",
   "bot_avatar_url": "https://example.com/your-bot-avatar.png",
   "theme": "ocean",
-  "gchat_user_id": "users/YOUR_GOOGLE_CHAT_USER_ID"
+  "gchat_user_id": "users/your.email@example.com"
 }
