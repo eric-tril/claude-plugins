@@ -20,6 +20,7 @@ Install the plugins you want:
 
 ```
 /plugin install klair-staged-reviewer@eric-trilogy-plugins
+/plugin install pr-review-responder@eric-trilogy-plugins
 /plugin install ping-chat@eric-trilogy-plugins
 ```
 
@@ -53,6 +54,16 @@ Reviews **staged changes** (`git diff --cached`) using specialized agents custom
 ```
 
 **Agents included:** code-reviewer, code-simplifier, comment-analyzer, staged-test-analyzer, silent-failure-hunter, type-design-analyzer
+
+### pr-review-responder
+
+Assesses and responds to **PR review comments** using a specialized agent that digs deeper than the diff to determine if each concern is valid. Interactively fix or skip each comment, with friendly replies posted back to GitHub. See the [plugin README](plugins/pr-review-responder/README.md) for full details.
+
+```
+/pr-review-responder:respond
+```
+
+**Agent included:** review-assessor
 
 ### ping-chat
 
@@ -120,6 +131,14 @@ claude-plugins/
 │   │   └── skills/
 │   │       └── review/
 │   │           └── SKILL.md              # /klair-staged-reviewer:review
+│   ├── pr-review-responder/
+│   │   ├── .claude-plugin/plugin.json    # Plugin metadata
+│   │   ├── README.md                     # Plugin documentation
+│   │   ├── agents/
+│   │   │   └── review-assessor.md        # Deep code assessment agent
+│   │   └── skills/
+│   │       └── respond/
+│   │           └── SKILL.md              # /pr-review-responder:respond
 │   └── ping-chat/
 │       ├── .claude-plugin/plugin.json    # Plugin metadata
 │       └── skills/

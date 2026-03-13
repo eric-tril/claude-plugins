@@ -1,0 +1,8 @@
+{
+  "name": "pr-review-responder",
+  "description": "Assess and respond to PR review comments with deep code analysis, interactive fix workflow, and GitHub replies",
+  "version": "0.1.0",
+  "author": {
+    "name": "Eric"
+  }
+}

@@ -24,6 +24,14 @@
       "version": "0.1.4",
       "category": "integrations",
       "tags": ["google-chat", "pr", "notifications"]
+    },
+    {
+      "name": "pr-review-responder",
+      "source": "./plugins/pr-review-responder",
+      "description": "Assess and respond to PR review comments with deep code analysis and interactive fix workflow",
+      "version": "0.1.0",
+      "category": "code-review",
+      "tags": ["review", "github", "pr", "comments", "response"]
     }
   ]
 }
