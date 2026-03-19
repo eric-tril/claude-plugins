@@ -32,6 +32,14 @@
       "version": "0.1.0",
       "category": "code-review",
       "tags": ["review", "github", "pr", "comments", "response"]
+    },
+    {
+      "name": "pr-writer",
+      "source": "./plugins/pr-writer",
+      "description": "Generate commit messages, PR descriptions, and Linear tickets from branch changes",
+      "version": "0.1.0",
+      "category": "productivity",
+      "tags": ["commit", "pr", "linear", "writing"]
     }
   ]
 }
