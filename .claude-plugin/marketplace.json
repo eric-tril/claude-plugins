@@ -13,7 +13,7 @@
       "name": "klair-staged-reviewer",
       "source": "./plugins/klair-staged-reviewer",
       "description": "Code review for staged changes with specialized agents and interactive fix workflow",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "category": "code-review",
       "tags": ["review", "python", "typescript", "fastapi", "react"]
     },
@@ -29,7 +29,7 @@
       "name": "pr-review-responder",
       "source": "./plugins/pr-review-responder",
       "description": "Assess and respond to PR review comments with deep code analysis and interactive fix workflow",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "code-review",
       "tags": ["review", "github", "pr", "comments", "response"]
     },
@@ -37,7 +37,7 @@
       "name": "pr-writer",
       "source": "./plugins/pr-writer",
       "description": "Generate commit messages, PR descriptions, and Linear tickets from branch changes",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "productivity",
       "tags": ["commit", "pr", "linear", "writing"]
     }

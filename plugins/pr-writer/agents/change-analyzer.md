@@ -52,6 +52,13 @@ Write a PR description using this structure:
 ## Testing
 - [How to verify these changes work]
 
+## Pages Affected
+[List each page/route that is touched by these changes with clickable links for local and production review. Determine the route path from the file path, component name, or route configuration in the diff. For each affected page, output two links:]
+
+- **Page name or route**: [localhost:3001/route-path](http://localhost:3001/route-path) | [dev.klair.ai/route-path](https://dev.klair.ai/route-path)
+
+[If no user-facing pages are affected (e.g., backend-only, CI, config changes), write: "No user-facing pages affected."]
+
 ### Section 4: Linear Ticket
 
 Produce:

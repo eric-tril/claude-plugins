@@ -232,9 +232,45 @@ For each remaining unresolved comment:
 Review staged changes with `git diff --cached`.
 ```
 
-5. Proceed to **Step 6: Post Replies**.
+5. Proceed to **Step 6: Run Automated Checks**, then **Step 7: Post Replies**.
 
-### Step 6: Post Replies to GitHub
+### Step 6: Run Automated Checks
+
+After all comments are processed and before posting replies, run automated checks on the files that were fixed. This catches issues that would fail the GitHub CI workflow (ruff, tests, build) so the user can fix them before pushing.
+
+**If any backend (Python) files were fixed:**
+
+All commands run from the `klair-api/` directory.
+
+1. Run `uv run ruff format <fixed-py-files>` to auto-format
+2. Run `uv run ruff check <fixed-py-files>` to lint
+3. Report any remaining ruff issues with file:line references
+4. Run the relevant tests based on which files were fixed:
+   - Determine the feature area(s) from the fixed file paths (e.g., fixes to `routers/renewals.py` or `services/renewals.py` → run `pytest tests/renewals/`)
+   - If test files themselves were fixed, run those specific test files
+   - If fixes span multiple areas, run tests for each area
+   - Run with `uv run pytest <test-path>` (excludes integration tests by default)
+5. Report any test failures with file:line references and failure details
+
+**If any frontend (TypeScript/React) files were fixed:**
+
+All commands run from the `klair-client/` directory.
+
+1. Run `pnpm lint` to lint the project
+2. Run `pnpm tsc --noEmit` to type-check the project
+3. Run `pnpm build` to verify the production build succeeds
+4. Report any lint, type, or build errors with file:line references
+
+**If no files were fixed**, skip this step.
+
+Present results clearly:
+- "All automated checks passed — clean to push." or
+- List any failures found, grouped by check type (ruff / tests / lint / types / build)
+
+If any checks fail, warn the user before proceeding to replies:
+"Some checks failed — you may want to fix these before pushing. Proceeding to reply posting."
+
+### Step 7: Post Replies to GitHub
 
 After all comments are processed (either interactive or auto mode):
 
@@ -295,7 +331,7 @@ Posted X of Y replies to PR #N.
 [List each posted reply with a link to the comment thread]
 ```
 
-### Step 7: Final Summary
+### Step 8: Final Summary
 
 ```
 # PR Review Response Complete

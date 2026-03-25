@@ -96,13 +96,13 @@ After all issues are processed, you get a summary of what was applied vs skipped
 8. git commit
 ```
 
-## Post-Fix Automated Checks
+## Pre-Push Automated Checks
 
-After fixes are applied, the command automatically runs:
-- **Python files**: `uv run ruff format` + `uv run ruff check`
-- **TypeScript files**: `pnpm lint:pr` + `pnpm tsc --noEmit`
+At the end of the review, the command automatically runs checks that mirror the GitHub CI workflow:
+- **Python files** (from `klair-api/`): `uv run ruff format` + `uv run ruff check` + `uv run pytest` on relevant test directories
+- **TypeScript files** (from `klair-client/`): `pnpm lint` + `pnpm tsc --noEmit` + `pnpm build`
 
-This catches any formatting or type issues introduced by the AI fixes.
+This catches formatting, lint, test, and build failures before you push — preventing CI failures.
 
 ## Tips
 

@@ -126,23 +126,34 @@ Run `git add -p` to selectively stage fixes.
 
 ### Step 8: Run Automated Checks
 
-If any fixes were applied in Step 6, run the relevant automated checks on the modified files:
+Run the relevant automated checks based on which file types were staged — regardless of whether fixes were applied. These checks catch issues that would fail the GitHub CI workflow (ruff, tests, build) so the user can fix them before pushing.
 
-**If backend (Python) files were modified by fixes:**
+**If backend (Python) files are in the staged changes:**
+
+All commands run from the `klair-api/` directory.
+
 1. Run `uv run ruff format <modified-py-files>` to auto-format
 2. Run `uv run ruff check <modified-py-files>` to lint
 3. Report any remaining ruff issues with file:line references
+4. Run the relevant tests based on which files changed:
+   - Determine the feature area(s) from the changed file paths (e.g., changes to `routers/renewals.py` or `services/renewals.py` → run `pytest tests/renewals/`)
+   - If test files themselves were changed, run those specific test files
+   - If changes span multiple areas, run tests for each area
+   - Run with `uv run pytest <test-path>` (excludes integration tests by default)
+5. Report any test failures with file:line references and failure details
 
-**If frontend (TypeScript/React) files were modified by fixes:**
-1. Run `pnpm lint:pr` to lint changed files against origin/main
+**If frontend (TypeScript/React) files are in the staged changes:**
+
+All commands run from the `klair-client/` directory.
+
+1. Run `pnpm lint` to lint the project
 2. Run `pnpm tsc --noEmit` to type-check the project
-3. Report any remaining lint/type errors with file:line references
-
-**If no fixes were applied**, skip this step entirely.
+3. Run `pnpm build` to verify the production build succeeds
+4. Report any lint, type, or build errors with file:line references
 
 Present results clearly:
-- "All automated checks passed — your fixes are clean." or
-- List any lint/type errors found, noting which were likely introduced by fixes vs pre-existing
+- "All automated checks passed — clean to push." or
+- List any failures found, grouped by check type (ruff / tests / lint / types / build)
 
 Note: These checks run on the working tree. They may surface pre-existing issues unrelated to the review fixes.
 
