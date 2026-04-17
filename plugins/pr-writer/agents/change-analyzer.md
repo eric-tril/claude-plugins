@@ -50,14 +50,31 @@ Write a PR description using this structure:
 - [Bulleted list of specific changes]
 
 ## Testing
-- [How to verify these changes work]
+
+[Write clear, step-by-step instructions a reviewer can follow. Use this structure:]
+
+**Prerequisites**
+- [Any setup needed — e.g., `npm install`, env vars, seeded data. Omit the section if none.]
+
+**Steps**
+1. Start the dev server (e.g., `npm run dev`) and open the link below.
+2. [Numbered, concrete actions — click X, enter Y, submit Z.]
+3. [...]
+
+**Expected Result**
+- [What the reviewer should observe to confirm the change works.]
+
+**Link**
+- [http://localhost:3000/<route>](http://localhost:3000/<route>)
+
+[ALWAYS include a Link bullet with a clickable `http://localhost:3000/...` URL so the reviewer can jump straight to the relevant page. If the change has no single affected route, use `http://localhost:3000/`. If the repo is not a web app (CLI, library, backend service), replace the Link bullet with a **Command** bullet showing the exact command to run, and skip localhost.]
 
 ## Pages Affected
-[List each page/route that is touched by these changes with clickable links for local and production review. Determine the route path from the file path, component name, or route configuration in the diff. For each affected page, output two links:]
+[List each page/route touched by these changes with a clickable local link. Determine the route path from the file path, component name, or route configuration in the diff.]
 
-- **Page name or route**: [localhost:3001/route-path](http://localhost:3001/route-path) | [dev.klair.ai/route-path](https://dev.klair.ai/route-path)
+- **Page name or route**: [http://localhost:3000/route-path](http://localhost:3000/route-path)
 
-[If no user-facing pages are affected (e.g., backend-only, CI, config changes), write: "No user-facing pages affected."]
+[If the repo publishes to a known production or staging URL that is clearly referenced in the diff or project config, append it after a `|` separator. Do not invent a production URL. If no user-facing pages are affected (e.g., backend-only, CLI, CI, config changes), write: "No user-facing pages affected."]
 
 ### Section 4: Linear Ticket
 

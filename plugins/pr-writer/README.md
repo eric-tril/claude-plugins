@@ -24,6 +24,10 @@ Generate commit messages, GitHub PR descriptions, and Linear ticket text from yo
 - Must be on a feature branch (not main/master)
 - Either staged changes or branch commits must exist
 
+## Repo-Agnostic
+
+Works in any repo. For web apps, the generated PR description includes step-by-step testing instructions and a clickable `http://localhost:3000/<route>` link so reviewers can jump straight to the affected page. For CLI/library/backend repos, the Testing section falls back to a command to run.
+
 ## No Configuration Needed
 
 This plugin requires no config files or API tokens. It reads git state only.

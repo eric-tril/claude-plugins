@@ -37,7 +37,7 @@
       "name": "pr-writer",
       "source": "./plugins/pr-writer",
       "description": "Generate commit messages, PR descriptions, and Linear tickets from branch changes",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "category": "productivity",
       "tags": ["commit", "pr", "linear", "writing"]
     }
